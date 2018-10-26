@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'groups',
     'posts',
+    'social_django',
     'debug_toolbar',
 ]
 
@@ -71,12 +72,27 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'simplesocial.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+ 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+ 'social_core.backends.google.GoogleOpenId',  # for Google authentication
+ 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+
+
+
+ 'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='518169620937-n4sg6o9opqsi6mirgjtu6324nipfa3t6.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZhZP0PG0MUrY98bh6ymbZifd'
+
 
 
 # Database
